@@ -19,7 +19,7 @@
 
 <script>
 
-import { LMap, LTileLayer } from'@vue-leaflet/vue-leaflet'
+import { LMap, LTileLayer } from '@vue-leaflet/vue-leaflet'
 
 export default {
     name: 'StateMap',
@@ -45,7 +45,8 @@ export default {
             }).catch( err => {
                 //404
                 if (err.response && err.response.status === 404) {
-                    this.state.name = '?' // todo think aout a better way to communicate to the user
+                    // this.state.name = '?' // todo think aout a better way to communicate to the user
+                    this.$router.push({name: 'NotFound'})
                 } else {
                     //500 server error
                     alert('Sorry, error fetching data about this state') //msg for user

@@ -12,7 +12,7 @@ router.get('/states', function(req, res, next) {
 })
 
 // fetch a single state's whole information
-router.get('/state/:name', function(req, res, name){
+router.get('/state/:name', function(req, res, next){
     let stateName = req.params.name
     States.findOne( {where: {name: stateName}})
     .then( state => {
@@ -23,6 +23,15 @@ router.get('/state/:name', function(req, res, name){
         }
     })
     .catch( err => next(err) )
+})
+
+// fetch a list of states visited
+router.get('/states/visited', function(req, res, next){
+    States.findAll({where: {visited: true}}) //find all states where visited = true
+    .then( states => {
+        return res.json(states)
+    })
+    .catch( err => next(err))
 })
 
 //patch route to update a state with visited/not status

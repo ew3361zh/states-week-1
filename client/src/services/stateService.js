@@ -19,6 +19,14 @@ export default {
         })
     },
 
+    // get states visited. assuming the server request is doing the sorting of visited/not-visited and this is only making the call to the route that
+    // has already done the work
+    getVisited() {
+        return axios.get('/api/states/visited').then( response => {
+            return response.data
+        })
+    },
+
     getOneState(stateName) {
         return axios.get('/api/state/' + stateName).then( response => {
             return response.data
